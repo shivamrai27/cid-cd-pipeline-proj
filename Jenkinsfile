@@ -14,7 +14,7 @@ pipeline{
         }
         stage('Checkout from SCM'){
             steps{
-                git branch: 'main', url: 'https://github.com/shivamrai27/cid-cd-pipeline-proj'
+                git branch: 'master', url: 'https://github.com/shivamrai27/cid-cd-pipeline-proj'
             }
         }
 
