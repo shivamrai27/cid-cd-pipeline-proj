@@ -6,14 +6,13 @@ pipeline{
         jdk "Java17"
         maven "Maven3"
     }
-    environment{
-        APP_NAME = "cid-cd-pipeline-proj"
-        RELEASE = "1.0.0"
-        DOCKER_USER = "shivamrai27"
-        DOCKER_PASS = 'dockerhub'
-        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-    }
+environment{
+    APP_NAME = "cid-cd-pipeline-proj"
+    RELEASE = "1.0.0"
+    IMAGE_NAME = "${APP_NAME}"  // username will come from credentials
+    IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+}
+
 
     stages{
         stage('Cleamup Workspace'){
@@ -54,18 +53,19 @@ pipeline{
         //         }
         //     }
         // }
-        stage("Build & Push Docker Image"){ 
-            steps {
-                script {
-                    docker.withRegistry('', DOCKER_PASS) {
-                    docker_image = docker.build "${IMAGE_NAME}"
-                    }
-
-                    docker.withRegistry('', DOCKER_PASS) {
+stage("Build & Push Docker Image"){ 
+    steps {
+        script {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_USER}:${DOCKER_PASS}") {
+                    def docker_image = docker.build("${DOCKER_USER}/${APP_NAME}")
                     docker_image.push("${IMAGE_TAG}")
-                    docker_image.push('latest')}
+                    docker_image.push('latest')
                 }
             }
         }
+    }
+}
+
     }
 }
