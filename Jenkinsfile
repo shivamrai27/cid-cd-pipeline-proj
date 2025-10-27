@@ -11,7 +11,6 @@ environment{
     RELEASE = "1.0.0"
     IMAGE_NAME = "${APP_NAME}"  // username will come from credentials
     IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-    APP_NAME = "complete-production-e2e-pipeline"
     JENKINS_API_TOKEN = "${JENKINS_API_TOKEN}"
 }
 
