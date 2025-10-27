@@ -11,12 +11,12 @@ environment{
     RELEASE = "1.0.0"
     IMAGE_NAME = "${APP_NAME}"  // username will come from credentials
     IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-    JENKINS_API_TOKEN = "${JENKINS_API_TOKEN}"
+    JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
 }
 
 
     stages{
-        stage('Cleamup Workspace'){
+        stage('Cleanup Workspace'){
             steps{
                 cleanWs()
             }
