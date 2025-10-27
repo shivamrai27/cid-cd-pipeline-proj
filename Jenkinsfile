@@ -54,19 +54,24 @@ environment{
         //         }
         //     }
         // }
-        stage("Build & Push Docker Image"){ 
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_USER}:${DOCKER_PASS}") {
-                            def docker_image = docker.build("${DOCKER_USER}/${APP_NAME}")
-                            docker_image.push("${IMAGE_TAG}")
-                            docker_image.push('latest')
-                        }
-                    }
+stage("Build & Push Docker Image"){ 
+    steps {
+        script {
+            // STEP A: Use the correct ID 'dockerhub-cred'
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) { 
+                
+                // STEP B: The second argument is the Credentials ID, which is 'dockerhub-cred'
+                docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-cred') { 
+                    
+                    def docker_image = docker.build("${DOCKER_USER}/${APP_NAME}") 
+                    
+                    docker_image.push("${IMAGE_TAG}")
+                    docker_image.push('latest')
                 }
             }
         }
+    }
+}
         stage("Trigger CD Pipeline") {
             steps {
                 script {
