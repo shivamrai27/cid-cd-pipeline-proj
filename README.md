@@ -5,7 +5,7 @@ This README describes a concise, hands-on setup to reproduce a full CI/CD pipeli
 
 > **Scope:** quick install & configuration steps, the recommended Jenkinsfile structure (declared pipeline), essential commands, and troubleshooting notes.
 ## ▶️ YouTube Explanation Video
-[![Thumbnail Alt Text](https://img.youtube.com/vi/q4g7KJdFSn0/0.jpg)](https://youtu.be/q4g7KJdFSn0)
+[![Thumbnail Alt Text](https://img.youtube.com/vi/ME85lbvGJS8/0.jpg)](https://youtu.be/ME85lbvGJS8)
 ---
 
 ## Table of Contents
