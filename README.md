@@ -4,7 +4,8 @@
 This README describes a concise, hands-on setup to reproduce a full CI/CD pipeline: Jenkins (CI), SonarQube (quality), Docker (image build), Kubernetes (k3s used here), and ArgoCD (GitOps CD). It assumes CentOS VMs (use `sudo dnf`) and that you have basic privileges to install packages and open ports.
 
 > **Scope:** quick install & configuration steps, the recommended Jenkinsfile structure (declared pipeline), essential commands, and troubleshooting notes.
-
+## ▶️ YouTube Explanation Video
+[![Thumbnail Alt Text](https://img.youtube.com/vi/q4g7KJdFSn0/0.jpg)](https://youtu.be/q4g7KJdFSn0)
 ---
 
 ## Table of Contents
